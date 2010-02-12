@@ -1,0 +1,12 @@
+﻿<Window x:Class="MEFUISample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="240" Width="500">
+    <DockPanel x:Name="_dockPanel">
+        <ContentControl x:Name="_topArea" DockPanel.Dock="Top"/>
+        <ContentControl x:Name="_bottomArea" DockPanel.Dock="Bottom"/>
+        <ContentControl x:Name="_leftArea" DockPanel.Dock="Left"/>
+        <ContentControl x:Name="_rightArea" DockPanel.Dock="Right"/>
+        <ContentControl x:Name="_mainArea"/>
+    </DockPanel>
+</Window>
