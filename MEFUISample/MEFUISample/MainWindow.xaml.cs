@@ -17,9 +17,6 @@ using UISampleContracts;
 
 namespace MEFUISample
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         [ImportMany(UISampleConstants.ControlContractName)]
@@ -28,7 +25,8 @@ namespace MEFUISample
         public MainWindow()
         {
             InitializeComponent();
-            ComposeHost();
+
+			CompositionInitializer.SatisfyImports(this);
 
             SetupArea(DockPosition.Top, _topArea);
             SetupArea(DockPosition.Bottom, _bottomArea);
@@ -63,33 +61,15 @@ namespace MEFUISample
             }
         }
 
-        private void ComposeHost()
-        {
-            var thisCatalog = new AssemblyCatalog(this.GetType().Assembly);
-            // For extensions create a DirectoryCatalog and add it to the AggregateCatalog
-            var dirCatalog = new DirectoryCatalog("Extensions");
-            var catalog = new AggregateCatalog(thisCatalog, dirCatalog);
-            var container = new CompositionContainer(catalog);
+		//private void ComposeHost()
+		//{
+		//    var thisCatalog = new AssemblyCatalog(this.GetType().Assembly);
+		//    // For extensions create a DirectoryCatalog and add it to the AggregateCatalog
+		//    var dirCatalog = new DirectoryCatalog("Extensions");
+		//    var catalog = new AggregateCatalog(thisCatalog, dirCatalog);
+		//    var container = new CompositionContainer(catalog);
 
-            container.ComposeParts(this);
-        }
+		//    container.ComposeParts(this);
+		//}
     }
-
-    //public class Exporter
-    //{
-    //    private Button _clickMeButton;
-    //    [ExportControl(Name = "Click Me!", Position = DockPosition.Center)]
-    //    private Button ClickMeButton
-    //    {
-    //        get
-    //        {
-    //            if (_clickMeButton == null)
-    //            {
-    //                _clickMeButton = new Button();
-    //                _clickMeButton.Content = "Click Me!";
-    //            }
-    //            return _clickMeButton;
-    //        }
-    //    }
-    //}
 }
